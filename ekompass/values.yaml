@@ -206,7 +206,6 @@ service:
 
 ingress:
   enabled: false
- 
 
 resources:
   {}
@@ -248,16 +247,16 @@ supersetNode:
     - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; /usr/bin/run-server.sh"
   connections:
     # -- Change in case of bringing your own redis and then also set redis.enabled:false
-    redis_host: "private-db-redis-ekompass-superset-do-user-15065846-0.c.db.ondigitalocean.com"
-    redis_user: default
-    redis_password: "AVNS_NXW45TTBsFQXRWVqDO8"
+    redis_host: "db-redis-ekompass-superset-do-user-15065846-0.c.db.ondigitalocean.com"
+    redis_user: "default"
+    redis_password: "pass in 1pass" # TODO change this
     redis_port: "25061"
     # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
     db_host: "private-db-postgresql-ekompass-superset-do-user-15065846-0.c.db.ondigitalocean.com"
     db_port: "25060"
-    db_user: doadmin
-    db_pass: "AVNS_CwVyFqlYS-pngr2_KZ0"
-    db_name: defaultdb
+    db_user: "doadmin"
+    db_pass: "pass in 1pass" # TODO change this
+    db_name: "defaultdb"
   env: {}
   # -- If true, forces deployment to reload on each upgrade
   forceReload: false
@@ -339,7 +338,7 @@ supersetWorker:
     - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app worker"
   # -- If true, forces deployment to reload on each upgrade
   forceReload: false
-    
+
   # -- Launch additional containers into supersetWorker pod
   extraContainers: []
   # -- Annotations to be added to supersetWorker deployment
@@ -428,7 +427,7 @@ init:
   enabled: true
   connections:
     # -- Change in case of bringing your own redis and then also set redis.enabled:false
-    redis_host: "private-db-redis-ekompass-superset-do-user-15065846-0.c.db.ondigitalocean.com"
+    redis_host: "db-redis-ekompass-superset-do-user-15065846-0.c.db.ondigitalocean.com"
     redis_user: "default"
     redis_password: "pass in 1pass" # TODO change this
     redis_port: "25061"
